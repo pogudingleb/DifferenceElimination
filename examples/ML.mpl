@@ -8,7 +8,8 @@ vars := [
 eqs := [
   numer(x1 - (1 - b) * x0 / (x0 + a1_ * y0) - b * x0),
   numer(y1 - (1 - b) * y0 / (a2_ * x0 + y0) - b * y0),
-  x0 + y0 - c
+  x0 + y0 - c,
+  x1 + y1 - c
 ]:
 
 B := ComputeBound(eqs, [x, y]):

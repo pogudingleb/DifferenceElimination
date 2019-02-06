@@ -23,7 +23,6 @@
   local diff_vars_to_eliminate, m, d0, d1, h, i, j, ord, h_sum, ideal, 
   components, degrees, hpoly, dim, deg, result;
     h := GetOrdersForSystem(eqs, vars_to_eliminate):
-    print(h);
     diff_vars_to_eliminate := {}:
     for i from 1 to nops(h) do
       for j from 0 to h[i] - 1 do
@@ -34,7 +33,6 @@
 
     ideal := PolynomialIdeals[PolynomialIdeal](eqs, variables = diff_vars_to_eliminate):
     components := [PolynomialIdeals[PrimeDecomposition](ideal)]:
-    print("Num components ", nops(components));
     deg_total := 0:
     dim_max := 0:
     for i from 1 to nops(components) do
@@ -46,7 +44,6 @@
         dim_max := max(dim_max, dim):
       end if:
     end do:
-    print(deg_total, dim_max);
     B(dim_max, deg_total):
   end proc:
 
@@ -79,14 +76,12 @@
         indets(prolonged)
       ):
       diff_vars_to_keep := {op(diff_vars_to_keep), op(parameters)}:
-      print(diff_vars_to_keep);
+ 
       eliminant := PolynomialIdeals[EliminationIdeal](
         PolynomialIdeals[PolynomialIdeal](prolonged, variables = {op(diff_vars_to_eliminate), op(diff_vars_to_keep)}),
         diff_vars_to_keep
       ):
-      print(eliminant);
       if PolynomialIdeals[Generators](eliminant) <> {} then
-        print("Hi", eliminant, PolynomialIdeals[Generators](eliminant));
         result := PolynomialIdeals[Generators](eliminant):
         break:
       end if:
